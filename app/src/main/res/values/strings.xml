@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MvpApp</string>
+
+    <string name="global_retry">Retry</string>
+</resources>
