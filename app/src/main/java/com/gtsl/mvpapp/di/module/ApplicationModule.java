@@ -5,6 +5,8 @@ import com.gtsl.mvpapp.di.ApplicationContext;
 import android.app.Application;
 import android.content.Context;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -22,7 +24,7 @@ public class ApplicationModule {
         return mApplication;
     }
 
-    @Provides
+    @Provides @Singleton
     Application provideApplication() {
         return mApplication;
     }

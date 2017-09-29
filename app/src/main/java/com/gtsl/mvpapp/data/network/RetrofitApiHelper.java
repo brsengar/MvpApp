@@ -18,36 +18,34 @@ public class RetrofitApiHelper implements ApiHelper {
     private static final String HASH = Hash.md5(TIMESTAMP + "5de1fabcda2ea08912bd8b09bca4321f50563655" + API_KEY);
 
     private ApiService mApiService;
-    private HomeBasePresenter mHomeBasePresenter;
     private Scheduler mIoScheduler;
     private Scheduler mUiScheduler;
 
     @Inject
-    RetrofitApiHelper(HomeBasePresenter presenter, ApiService apiService, @RunOn(SchedulerType.IO) Scheduler ioScheduler,
+    public RetrofitApiHelper(ApiService apiService, @RunOn(SchedulerType.IO) Scheduler ioScheduler,
             @RunOn(SchedulerType.UI) Scheduler uiScheduler) {
         mApiService = apiService;
-        mHomeBasePresenter = presenter;
         mIoScheduler = ioScheduler;
         mUiScheduler = uiScheduler;
     }
 
     @Override
-    public void getComics() {
+    public void getComics(final HomeBasePresenter presenter) {
         mApiService.getComics(TIMESTAMP, API_KEY, HASH).subscribeOn(mIoScheduler).observeOn(mUiScheduler).subscribe(
                 new SingleObserver<ComicDataWrapper>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        mHomeBasePresenter.showProgress();
+                        presenter.showProgress();
                     }
 
                     @Override
                     public void onSuccess(ComicDataWrapper comicDataWrapper) {
-                        mHomeBasePresenter.populate(comicDataWrapper);
+                        presenter.populate(comicDataWrapper);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mHomeBasePresenter.showError();
+                        presenter.showError();
                     }
                 });
     }

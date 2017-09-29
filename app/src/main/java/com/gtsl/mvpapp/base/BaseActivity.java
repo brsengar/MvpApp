@@ -3,6 +3,7 @@ package com.gtsl.mvpapp.base;
 import com.gtsl.mvpapp.MvpApplication;
 import com.gtsl.mvpapp.di.component.ActivityComponent;
 import com.gtsl.mvpapp.di.component.DaggerActivityComponent;
+import com.gtsl.mvpapp.di.module.ActivityModule;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mActivityComponent = DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
                 .applicationComponent(((MvpApplication) getApplication()).applicationComponent())
                 .build();
     }
