@@ -13,8 +13,8 @@ import dagger.Component;
 @Singleton
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
-    @ApplicationContext
-    Context context();
+//    @ApplicationContext
+//    Context context();
 
     Application application();
 }

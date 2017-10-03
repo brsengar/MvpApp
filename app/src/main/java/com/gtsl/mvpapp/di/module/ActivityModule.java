@@ -18,21 +18,27 @@ import io.reactivex.Scheduler;
 @Module
 public class ActivityModule {
 
-    private AppCompatActivity mActivity;
+//    private AppCompatActivity mActivity;
+//
+//    public ActivityModule(AppCompatActivity activity) {
+//        this.mActivity = activity;
+//    }
+//
+//    @Singleton
+//    @Provides
+//    AppCompatActivity provideActivity() {
+//        return mActivity;
+//    }
 
-    public ActivityModule(AppCompatActivity activity) {
-        this.mActivity = activity;
-    }
-
-    @Singleton
-    @Provides
-    AppCompatActivity provideActivity() {
-        return mActivity;
-    }
-
-    @Singleton
-    @Provides
-    HomeBasePresenter providePresenter(ApiHelper apiHelper) {
-        return new HomePresenter(apiHelper);
-    }
+//    @Singleton
+//    @Provides
+//    ApiHelper provideApiHelper(ApiService apiService, Scheduler ioScheduler, Scheduler uiScheduler) {
+//        return new RetrofitApiHelper(apiService, ioScheduler, uiScheduler);
+//    }
+//
+//    @Singleton
+//    @Provides
+//    HomePresenter providePresenter(ApiHelper apiHelper) {
+//        return new HomePresenter(apiHelper);
+//    }
 }

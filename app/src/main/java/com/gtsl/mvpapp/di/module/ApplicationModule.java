@@ -18,11 +18,11 @@ public class ApplicationModule {
         mApplication = application;
     }
 
-    @Provides
-    @ApplicationContext
-    Context provideContext() {
-        return mApplication;
-    }
+//    @Provides
+//    @ApplicationContext
+//    Context provideContext() {
+//        return mApplication;
+//    }
 
     @Provides @Singleton
     Application provideApplication() {

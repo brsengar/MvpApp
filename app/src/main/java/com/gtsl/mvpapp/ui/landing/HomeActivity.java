@@ -1,11 +1,15 @@
 package com.gtsl.mvpapp.ui.landing;
 
+import com.gtsl.mvpapp.MvpApplication;
 import com.gtsl.mvpapp.R;
-import com.gtsl.mvpapp.base.BaseActivity;
+import com.gtsl.mvpapp.di.component.ActivityComponent;
+import com.gtsl.mvpapp.di.component.DaggerActivityComponent;
+import com.gtsl.mvpapp.di.module.ActivityModule;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
@@ -15,9 +19,9 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends BaseActivity implements HomeView {
+public class HomeActivity extends AppCompatActivity implements HomeView {
     @Inject
-    HomeBasePresenter presenter;
+    HomePresenter presenter;
 
     @BindView(R.id.comic_list)
     RecyclerView comicList;
@@ -40,7 +44,11 @@ public class HomeActivity extends BaseActivity implements HomeView {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        activityComponent().inject(this);
+        ActivityComponent activityComponent = DaggerActivityComponent.builder()
+                .networkComponent(((MvpApplication) getApplication()).networkComponent())
+                .build();
+
+        activityComponent.inject(this);
         presenter.init();
 
     }

@@ -8,6 +8,7 @@ import com.gtsl.mvpapp.di.module.NetworkModule;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import io.reactivex.Scheduler;
 
 @Singleton
 @Component(modules = {NetworkModule.class, ApplicationModule.class})
