@@ -1,8 +1,8 @@
 package com.gtsl.mvpapp.data.network;
 
 import com.gtsl.mvpapp.data.model.ComicDataWrapper;
-import com.gtsl.mvpapp.data.scheduler.RunOn;
-import com.gtsl.mvpapp.data.scheduler.SchedulerType;
+import com.gtsl.mvpapp.di.RunOn;
+import com.gtsl.mvpapp.di.SchedulerType;
 import com.gtsl.mvpapp.ui.landing.HomeBasePresenter;
 import com.gtsl.mvpapp.utils.Hash;
 

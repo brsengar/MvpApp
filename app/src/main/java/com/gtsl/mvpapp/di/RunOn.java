@@ -1,4 +1,4 @@
-package com.gtsl.mvpapp.data.scheduler;
+package com.gtsl.mvpapp.di;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
