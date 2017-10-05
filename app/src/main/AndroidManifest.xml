@@ -26,7 +26,7 @@
         </activity>
 
         <activity
-            android:name="com.gtsl.mvpapp.ui.details.ComicDetailActivity"
+            android:name="com.gtsl.mvpapp.ui.details.DetailsActivity"
             android:label="Title Detail"
             android:parentActivityName=".ui.landing.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar"

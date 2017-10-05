@@ -3,7 +3,7 @@ package com.gtsl.mvpapp.ui.landing;
 import com.bumptech.glide.Glide;
 import com.gtsl.mvpapp.R;
 import com.gtsl.mvpapp.data.model.Title;
-import com.gtsl.mvpapp.ui.details.ComicDetailActivity;
+import com.gtsl.mvpapp.ui.details.DetailsActivity;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -61,8 +61,8 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.ViewHolder> 
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(view.getContext(), ComicDetailActivity.class);
-            intent.putExtra(ComicDetailActivity.EXTRA_COMIC, mTitleList.get(getLayoutPosition()));
+            Intent intent = new Intent(view.getContext(), DetailsActivity.class);
+            intent.putExtra(DetailsActivity.getEXTRA_COMIC(), mTitleList.get(getLayoutPosition()));
             view.getContext().startActivity(intent);
 
         }

@@ -7,27 +7,24 @@ import android.text.Html
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.bumptech.glide.Glide
 import com.gtsl.mvpapp.R
 import com.gtsl.mvpapp.data.model.Title
+import com.gtsl.mvpapp.utils.bindView
 import java.text.DecimalFormat
 
-class ComicDetailActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity() {
+    companion object {
+        @JvmStatic val EXTRA_COMIC = "comic"
+    }
 
-    @BindView(R.id.toolbar)
-    internal var toolbar: Toolbar? = null
-    @BindView(R.id.comic_detail_title)
-    internal var title: TextView? = null
-    @BindView(R.id.comic_detail_creators)
-    internal var creators: TextView? = null
-    @BindView(R.id.comic_detail_price)
-    internal var price: TextView? = null
-    @BindView(R.id.comic_detail_description)
-    internal var description: TextView? = null
-    @BindView(R.id.comic_image)
-    internal var comicImage: ImageView? = null
+    val toolbar: Toolbar by bindView(R.id.toolbar)
+    val title: TextView by bindView(R.id.comic_detail_title)
+    val creators: TextView by bindView(R.id.comic_detail_creators)
+    val price: TextView by bindView(R.id.comic_detail_price)
+    val description: TextView by bindView(R.id.comic_detail_description)
+    val comicImage: ImageView by bindView(R.id.comic_image)
 
     private var mTitle: Title? = null
 
@@ -82,9 +79,5 @@ class ComicDetailActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    companion object {
-        val EXTRA_COMIC = "comic"
     }
 }
