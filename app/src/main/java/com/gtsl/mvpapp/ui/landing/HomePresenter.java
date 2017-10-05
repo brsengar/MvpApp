@@ -7,19 +7,9 @@ import javax.inject.Inject;
 
 public class HomePresenter implements HomeBasePresenter {
 
+    private HomeEventListener mListener;
     public ApiHelper mApiHelper;
-//    private ApiService marvelApi;
-//    private Scheduler ioScheduler;
-//    private Scheduler uiScheduler;
 
-//    @Inject
-//    HomePresenter(ApiService marvelApi,
-//            @RunOn(SchedulerType.IO) Scheduler ioScheduler,
-//            @RunOn(SchedulerType.UI) Scheduler uiScheduler) {
-//        this.marvelApi = marvelApi;
-//        this.ioScheduler = ioScheduler;
-//        this.uiScheduler = uiScheduler;
-//    }
 
     @Inject
     public HomePresenter(ApiHelper apiHelper) {
@@ -27,8 +17,13 @@ public class HomePresenter implements HomeBasePresenter {
     }
 
     @Override
-    public void populate(ComicDataWrapper wrapper) {
+    public void onAttach(HomeEventListener listener) {
+        mListener = listener;
+    }
 
+    @Override
+    public void populate(ComicDataWrapper wrapper) {
+        mListener.onPopulate(wrapper.data().results());
     }
 
     @Override

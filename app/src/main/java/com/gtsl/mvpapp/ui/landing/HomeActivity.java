@@ -1,25 +1,24 @@
 package com.gtsl.mvpapp.ui.landing;
 
-import com.gtsl.mvpapp.MvpApplication;
 import com.gtsl.mvpapp.R;
-import com.gtsl.mvpapp.di.component.ActivityComponent;
-import com.gtsl.mvpapp.di.component.DaggerActivityComponent;
-import com.gtsl.mvpapp.di.module.ActivityModule;
+import com.gtsl.mvpapp.base.BaseActivity;
+import com.gtsl.mvpapp.data.model.Title;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity implements HomeView {
+public class HomeActivity extends BaseActivity implements HomeEventListener {
     @Inject
     HomePresenter presenter;
 
@@ -44,17 +43,13 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        ActivityComponent activityComponent = DaggerActivityComponent.builder()
-                .networkComponent(((MvpApplication) getApplication()).networkComponent())
-                .build();
-
-        activityComponent.inject(this);
+        activityComponent().inject(this);
+        presenter.onAttach(this);
         presenter.init();
-
     }
 
     @Override
-    public void onPopulate() {
-
+    public void onPopulate(List<Title> titleList) {
+        comicList.setAdapter(new TitleAdapter(titleList));
     }
 }

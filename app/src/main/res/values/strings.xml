@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MvpApp</string>
-
     <string name="global_retry">Retry</string>
+    <string name="message_no_content">No Content Available</string>
+    <string name="message_free">Free</string>
 </resources>
