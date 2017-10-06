@@ -20,7 +20,6 @@ public abstract class Title implements Parcelable {
     public abstract List<Image> images();
     public abstract int pageCount();
     public abstract List<TitlePrice> prices();
-    @Nullable public abstract CreatorList creators();
 
     public static TypeAdapter<Title> typeAdapter(Gson gson) {
         return new AutoValue_Title.GsonTypeAdapter(gson);

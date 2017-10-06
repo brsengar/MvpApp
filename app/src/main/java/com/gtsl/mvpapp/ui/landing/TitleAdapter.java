@@ -28,7 +28,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.view_comic_list_item, parent, false);
+                .inflate(R.layout.view_title_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -48,9 +48,9 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.ViewHolder> 
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.thumbnail)
+        @BindView(R.id.title_list_imageview_thumbnail)
         ImageView thumbnail;
-        @BindView(R.id.title)
+        @BindView(R.id.title_list_textview_title)
         TextView title;
 
         public ViewHolder(View itemView) {
@@ -62,7 +62,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.ViewHolder> 
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(view.getContext(), DetailsActivity.class);
-            intent.putExtra(DetailsActivity.getEXTRA_COMIC(), mTitleList.get(getLayoutPosition()));
+            intent.putExtra(DetailsActivity.getEXTRA_TITLE(), mTitleList.get(getLayoutPosition()));
             view.getContext().startActivity(intent);
 
         }

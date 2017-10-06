@@ -16,27 +16,26 @@ import java.text.DecimalFormat
 
 class DetailsActivity : AppCompatActivity() {
     companion object {
-        @JvmStatic val EXTRA_COMIC = "comic"
+        @JvmStatic val EXTRA_TITLE = "title"
     }
 
-    val toolbar: Toolbar by bindView(R.id.toolbar)
-    val title: TextView by bindView(R.id.comic_detail_title)
-    val creators: TextView by bindView(R.id.comic_detail_creators)
-    val price: TextView by bindView(R.id.comic_detail_price)
-    val description: TextView by bindView(R.id.comic_detail_description)
-    val comicImage: ImageView by bindView(R.id.comic_image)
+    val mToolbar: Toolbar by bindView(R.id.home_toolbar)
+    val mTitleTextView: TextView by bindView(R.id.details_content_textview_title)
+    val mPriceTextView: TextView by bindView(R.id.details_content_textview_price)
+    val mDescriptionTextView: TextView by bindView(R.id.details_content_textview_description)
+    val mTitleImageView: ImageView by bindView(R.id.title_details_imageview_title)
 
     private var mTitle: Title? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_comic_detail)
+        setContentView(R.layout.activity_title_details)
 
         ButterKnife.bind(this)
 
-        mTitle = intent.getParcelableExtra<Title>(EXTRA_COMIC)
+        mTitle = intent.getParcelableExtra<Title>(EXTRA_TITLE)
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(mToolbar)
         val actionBar = supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowTitleEnabled(false)
@@ -46,30 +45,18 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     fun initViews() {
-        title!!.text = mTitle!!.title()
-        creators!!.text = getCreators()
-        description!!.text = Html.fromHtml(if (mTitle!!.description() != null)
+        mTitleTextView!!.text = mTitle!!.title()
+        mDescriptionTextView!!.text = Html.fromHtml(if (mTitle!!.description() != null)
             mTitle!!.description()
         else
             getString(R.string.message_no_content))
-        price!!.text = if (mTitle!!.prices().size > 0)
+        mPriceTextView!!.text = if (mTitle!!.prices().size > 0)
             DecimalFormat("£#.##").format(mTitle!!.prices()[0].price().toDouble())
         else
             getString(R.string.message_free)
         Glide.with(this)
                 .load(mTitle!!.thumbnail().path() + "." + mTitle!!.thumbnail().extension())
-                .into(comicImage!!)
-    }
-
-    private fun getCreators(): String {
-        val creators = StringBuilder()
-        for (creatorSummary in mTitle!!.creators()!!.items()) {
-            creators.append(creatorSummary.name()).append(", ")
-        }
-        if (creators.length > 0) {
-            creators.delete(creators.length - 2, creators.length)
-        }
-        return creators.toString()
+                .into(mTitleImageView!!)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

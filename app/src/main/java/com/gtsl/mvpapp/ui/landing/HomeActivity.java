@@ -1,7 +1,7 @@
 package com.gtsl.mvpapp.ui.landing;
 
 import com.gtsl.mvpapp.R;
-import com.gtsl.mvpapp.base.BaseActivity;
+import com.gtsl.mvpapp.ui.base.BaseActivity;
 import com.gtsl.mvpapp.data.model.Title;
 
 import android.os.Bundle;
@@ -22,15 +22,15 @@ public class HomeActivity extends BaseActivity implements HomeEventListener {
     @Inject
     HomePresenter presenter;
 
-    @BindView(R.id.comic_list)
+    @BindView(R.id.home_recyclerview_title_list)
     RecyclerView comicList;
-    @BindView(R.id.toolbar)
+    @BindView(R.id.home_toolbar)
     Toolbar toolbar;
-    @BindView(R.id.filter_button)
+    @BindView(R.id.home_button_filter)
     FloatingActionButton filterButton;
-    @BindView(R.id.swipe_layout)
+    @BindView(R.id.home_swipe_layout)
     SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.retry_button)
+    @BindView(R.id.home_button_retry)
     Button retryButton;
 
     @Override

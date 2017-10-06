@@ -1,4 +1,4 @@
-package com.gtsl.mvpapp.base;
+package com.gtsl.mvpapp.ui.base;
 
 import com.gtsl.mvpapp.MvpApplication;
 import com.gtsl.mvpapp.di.component.ActivityComponent;
