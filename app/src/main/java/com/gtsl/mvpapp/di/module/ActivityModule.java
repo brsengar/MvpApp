@@ -1,7 +1,6 @@
 package com.gtsl.mvpapp.di.module;
 
 import com.gtsl.mvpapp.data.network.ApiHelper;
-import com.gtsl.mvpapp.ui.landing.HomeBasePresenter;
 import com.gtsl.mvpapp.ui.landing.HomePresenter;
 
 import android.support.v7.app.AppCompatActivity;

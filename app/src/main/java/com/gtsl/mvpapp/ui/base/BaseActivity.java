@@ -3,7 +3,6 @@ package com.gtsl.mvpapp.ui.base;
 import com.gtsl.mvpapp.MvpApplication;
 import com.gtsl.mvpapp.di.component.ActivityComponent;
 import com.gtsl.mvpapp.di.component.DaggerActivityComponent;
-import com.gtsl.mvpapp.di.module.ActivityModule;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

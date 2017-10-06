@@ -8,9 +8,7 @@ import javax.inject.Inject;
 public class HomePresenter implements HomeBasePresenter {
 
     private HomeEventListener mListener;
-
-//    @Inject
-    ApiHelper mApiHelper;
+    private ApiHelper mApiHelper;
 
     @Inject
     public HomePresenter(ApiHelper apiHelper) {
@@ -29,7 +27,7 @@ public class HomePresenter implements HomeBasePresenter {
 
     @Override
     public void init() {
-        mApiHelper.getComics(this);
+        mApiHelper.getTitles(this);
     }
 
     @Override

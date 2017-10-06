@@ -20,18 +20,18 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity implements HomeEventListener {
     @Inject
-    HomePresenter presenter;
+    HomePresenter mPresenter;
 
     @BindView(R.id.home_recyclerview_title_list)
-    RecyclerView comicList;
+    RecyclerView mTitleRecyclerView;
     @BindView(R.id.home_toolbar)
-    Toolbar toolbar;
+    Toolbar mToolbar;
     @BindView(R.id.home_button_filter)
-    FloatingActionButton filterButton;
+    FloatingActionButton mFilterButton;
     @BindView(R.id.home_swipe_layout)
-    SwipeRefreshLayout swipeRefreshLayout;
+    SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.home_button_retry)
-    Button retryButton;
+    Button mRetryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +40,16 @@ public class HomeActivity extends BaseActivity implements HomeEventListener {
 
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
+        setSupportActionBar(mToolbar);
+        mToolbar.setTitle(getTitle());
 
         activityComponent().inject(this);
-        presenter.onAttach(this);
-        presenter.init();
+        mPresenter.onAttach(this);
+        mPresenter.init();
     }
 
     @Override
     public void onPopulate(List<Title> titleList) {
-        comicList.setAdapter(new TitleAdapter(titleList));
+        mTitleRecyclerView.setAdapter(new TitleAdapter(titleList));
     }
 }

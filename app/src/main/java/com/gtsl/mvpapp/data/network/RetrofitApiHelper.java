@@ -31,8 +31,8 @@ public class RetrofitApiHelper implements ApiHelper {
     }
 
     @Override
-    public void getComics(final HomeBasePresenter presenter) {
-        mApiService.getComics(TIMESTAMP, API_PUBLIC_KEY, HASH).subscribeOn(mIoScheduler).observeOn(mUiScheduler).subscribe(
+    public void getTitles(final HomeBasePresenter presenter) {
+        mApiService.getTitles(TIMESTAMP, API_PUBLIC_KEY, HASH).subscribeOn(mIoScheduler).observeOn(mUiScheduler).subscribe(
                 new SingleObserver<ApiResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {

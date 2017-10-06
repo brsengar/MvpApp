@@ -34,11 +34,11 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Title comic = mTitleList.get(position);
-        holder.title.setText(comic.title());
-        Glide.with(holder.thumbnail.getContext())
-                .load(comic.thumbnail().path() + "." + comic.thumbnail().extension())
-                .into(holder.thumbnail);
+        Title title = mTitleList.get(position);
+        holder.mTitle.setText(title.title());
+        Glide.with(holder.mThumbnail.getContext())
+                .load(title.thumbnail().path() + "." + title.thumbnail().extension())
+                .into(holder.mThumbnail);
     }
 
     @Override
@@ -49,9 +49,9 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.title_list_imageview_thumbnail)
-        ImageView thumbnail;
+        ImageView mThumbnail;
         @BindView(R.id.title_list_textview_title)
-        TextView title;
+        TextView mTitle;
 
         public ViewHolder(View itemView) {
             super(itemView);

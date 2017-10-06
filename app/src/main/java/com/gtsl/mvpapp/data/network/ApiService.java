@@ -8,6 +8,6 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     @GET("v1/public/comics?limit=100")
-    Single<ApiResponse> getComics(@Query("ts") String timestamp, @Query("apikey") String apiKey, @Query("hash") String hash);
+    Single<ApiResponse> getTitles(@Query("ts") String timestamp, @Query("apikey") String apiKey, @Query("hash") String hash);
 
 }
