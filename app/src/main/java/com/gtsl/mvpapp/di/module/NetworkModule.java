@@ -5,7 +5,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import com.gtsl.mvpapp.data.model.GsonFactory;
+import com.gtsl.mvpapp.data.network.ApiHelper;
 import com.gtsl.mvpapp.data.network.ApiService;
+import com.gtsl.mvpapp.data.network.RetrofitApiHelper;
+import com.gtsl.mvpapp.di.RunOn;
+import com.gtsl.mvpapp.di.SchedulerType;
 
 import android.app.Application;
 
@@ -13,6 +17,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -69,6 +76,25 @@ public class NetworkModule {
     @Singleton
     ApiService provideApi(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
+    }
+
+    @Provides
+    @RunOn(SchedulerType.IO)
+    Scheduler provideIo() {
+        return Schedulers.io();
+    }
+
+    @Provides
+    @RunOn(SchedulerType.UI)
+    Scheduler provideUi() {
+        return AndroidSchedulers.mainThread();
+    }
+
+    @Provides
+    @Singleton
+    ApiHelper provideApiHelper(ApiService apiService, @RunOn(SchedulerType.IO) Scheduler ioScheduler,
+            @RunOn(SchedulerType.UI) Scheduler uiScheduler) {
+        return new RetrofitApiHelper(apiService, ioScheduler, uiScheduler);
     }
 
 }

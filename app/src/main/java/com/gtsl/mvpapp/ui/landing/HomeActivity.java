@@ -1,7 +1,8 @@
 package com.gtsl.mvpapp.ui.landing;
 
 import com.gtsl.mvpapp.R;
-import com.gtsl.mvpapp.base.BaseActivity;
+import com.gtsl.mvpapp.ui.base.BaseActivity;
+import com.gtsl.mvpapp.data.model.Title;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,25 +11,27 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends BaseActivity implements HomeView {
+public class HomeActivity extends BaseActivity implements HomeEventListener {
     @Inject
-    HomeBasePresenter presenter;
+    HomePresenter mPresenter;
 
-    @BindView(R.id.comic_list)
-    RecyclerView comicList;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.filter_button)
-    FloatingActionButton filterButton;
-    @BindView(R.id.swipe_layout)
-    SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.retry_button)
-    Button retryButton;
+    @BindView(R.id.home_recyclerview_title_list)
+    RecyclerView mTitleRecyclerView;
+    @BindView(R.id.home_toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.home_button_filter)
+    FloatingActionButton mFilterButton;
+    @BindView(R.id.home_swipe_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.home_button_retry)
+    Button mRetryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +40,16 @@ public class HomeActivity extends BaseActivity implements HomeView {
 
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
+        setSupportActionBar(mToolbar);
+        mToolbar.setTitle(getTitle());
 
         activityComponent().inject(this);
-        presenter.init();
-
+        mPresenter.onAttach(this);
+        mPresenter.init();
     }
 
     @Override
-    public void onPopulate() {
-
+    public void onPopulate(List<Title> titleList) {
+        mTitleRecyclerView.setAdapter(new TitleAdapter(titleList));
     }
 }

@@ -1,4 +1,4 @@
-package com.gtsl.mvpapp.data.scheduler;
+package com.gtsl.mvpapp.di;
 
 public enum SchedulerType {
     IO, UI

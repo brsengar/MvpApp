@@ -22,7 +22,7 @@ public class MvpApplication extends Application {
                 .build();
 
         mNetworkComponent = DaggerNetworkComponent.builder().applicationModule(new ApplicationModule(this))
-                .networkModule(new NetworkModule("")).build();
+                .networkModule(new NetworkModule("http://gateway.marvel.com/")).build();
     }
 
     public ApplicationComponent applicationComponent() {

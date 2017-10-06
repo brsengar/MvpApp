@@ -3,5 +3,5 @@ package com.gtsl.mvpapp.data.network;
 import com.gtsl.mvpapp.ui.landing.HomeBasePresenter;
 
 public interface ApiHelper {
-    void getComics(HomeBasePresenter presenter);
+    void getTitles(HomeBasePresenter presenter);
 }
