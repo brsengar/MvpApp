@@ -8,8 +8,9 @@ import javax.inject.Inject;
 public class HomePresenter implements HomeBasePresenter {
 
     private HomeEventListener mListener;
-    public ApiHelper mApiHelper;
 
+//    @Inject
+    ApiHelper mApiHelper;
 
     @Inject
     public HomePresenter(ApiHelper apiHelper) {
